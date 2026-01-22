@@ -110,7 +110,7 @@ button:hover {
 .form-container form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1px;
 }
 
 .form-container label {
@@ -118,8 +118,8 @@ button:hover {
 }
 
 .form-container input, .form-container select, .form-container textarea {
-    margin-bottom: 15px;
-    padding: 8px;
+    margin-bottom: 5px;
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -272,6 +272,419 @@ th {
    
 }
 
+
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.image-modal .modal-content {
+    margin: auto;
+    display: block;
+    max-width: 50%;
+    max-height: 80%;
+}
+
+.image-modal .close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Estilos do carrossel */
+.carrossel-container {
+    position: relative;
+    max-width: 600px;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.carrossel-fotos {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carrossel-item {
+    min-width: 100%;
+    display: none;
+    text-align: center;
+    padding: 10px;
+}
+
+.carrossel-item.active {
+    display: block;
+}
+
+.carrossel-item img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.carrossel-controles {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.carrossel-anterior,
+.carrossel-proximo {
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.carrossel-anterior:hover,
+.carrossel-proximo:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.carrossel-indicadores {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.indicador {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.indicador.ativo {
+    background-color: #333;
+}
+
+/* Miniaturas na visualização */
+.fotos-thumbnails {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.fotos-thumbnails img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.fotos-thumbnails img:hover {
+    transform: scale(1.05);
+    border-color: #007bff;
+}
+
+/* Estilos para edição de fotos */
+.foto-existente {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+.foto-preview {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.foto-preview img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+    border: 1px solid #ddd;
+}
+
+.foto-upload {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+.btn-remove-foto {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.btn-remove-foto:hover {
+    background-color: #c82333;
+}
+
+.btn-add-foto {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-add-foto:hover {
+    background-color: #218838;
+}
+
+.btn-add-foto:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Estilos para as seções de itens e pagamentos */
+.item-pedido, .pagamento-pedido {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.item-pedido > div, .pagamento-pedido > div {
+    margin-bottom: 10px;
+}
+
+.item-pedido button, .pagamento-pedido button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.item-pedido button:hover, .pagamento-pedido button:hover {
+    background-color: #ff5252;
+}
+
+h3 {
+    margin-top: 20px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #print-section, #print-section * {
+        visibility: visible;
+    }
+    #print-section {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .print-header {
+        text-align: center;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #000;
+        padding-bottom: 10px;
+    }
+    .print-fotos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+        justify-content: center;
+    }
+    .print-fotos img {
+        max-width: 30%;
+        height: auto;
+        border: 1px solid #ddd;
+    }
+    .print-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    .print-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    .print-table th, .print-table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+    .print-table th {
+        background-color: #f2f2f2;
+    }
+    .print-totals {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+    .no-print {
+        display: none !important;
+    }
+}@media print {
+        body * {
+            visibility: hidden;
+        }
+        #print-section, #print-section * {
+            visibility: visible;
+        }
+        #print-section {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .print-header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+        .print-fotos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .print-fotos img {
+            max-width: 30%;
+            height: auto;
+            border: 1px solid #ddd;
+        }
+        .print-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .print-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .print-table th, .print-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+        .print-table th {
+            background-color: #f2f2f2;
+        }
+        .print-totals {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .no-print {
+            display: none !important;
+        }
+    }
+
+    
+    /* Estilos para impressão */
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        #print-section, #print-section * {
+            visibility: visible;
+        }
+        #print-section {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .print-header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+        .print-fotos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .print-fotos img {
+            max-width: 30%;
+            height: auto;
+            border: 1px solid #ddd;
+        }
+        .print-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .print-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .print-table th, .print-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+        .print-table th {
+            background-color: #f2f2f2;
+        }
+        .print-totals {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    }
+    
+    /* Ocultar a seção de impressão na visualização normal */
+    .print-section-hidden {
+        display: none;
+    }
+
+
 /* Ajuste para telas menores */
 @media (max-width: 768px) {
     /* Garante que a descrição seja exibida corretamente */
@@ -326,6 +739,43 @@ th {
         text-align: left;
     }
 }
+
+/* Garante que a coluna Ações tenha espaço suficiente */
+td:nth-child(8) {
+    white-space: normal !important;
+    min-width: 250px; /* Ajuste conforme necessário */
+}
+
+/* Estilo para os botões na coluna Ações */
+td:nth-child(8) .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+/* Estilo para os botões individuais */
+td:nth-child(8) .btn {
+    margin: 2px;
+    padding: 5px 8px;
+    font-size: 14px;
+}
+
+.actions-cell {
+    white-space: normal;
+    min-width: 300px;
+}
+
+.actions-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.actions-buttons .btn {
+    flex: 0 0 auto;
+}
+
 
 
 @keyframes fadeIn {
